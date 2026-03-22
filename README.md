@@ -1,34 +1,117 @@
 # AI Fake News Detector 📰
 
-This is a small project I built to understand how machine learning can be used to detect fake news.
+A Streamlit-based **dual-engine** app that helps you evaluate misinformation in two ways:
 
-## Why I chose this problem
-The internet is full of claims and news articles, and it's becoming incredibly hard to tell what's real and what's fake. I wanted to see if I could build a simple tool that uses Natural Language Processing (NLP) to catch patterns of misinformation and verify claims against live data.
+1. **Analyze Content (ML Patterns):** Uses TF‑IDF + Logistic Regression to predict whether an article *looks like* fake news based on language patterns.
+2. **Live Fact Check (Web):** Takes a short claim and tries to verify it using **recent web sources** (via web search + LLM reasoning).
 
-## What I built
-A dual-engine web application that handles two types of misinformation:
-1. **Statistical NLP:** A standard Logistic Regression model trained to recognize the linguistic style of fake news.
-2. **Live Fact-Checking:** A Web-scraper attached to a Large Language Model (Google Gemini) that actively searches the internet to verify if a specific claim is true.
-
-## What worked well
-- Using TF-IDF vectorization was surprisingly effective at catching emotionally manipulative "clickbait" words.
-- The Streamlit framework made it really easy to deploy a clean UI without writing a ton of frontend code.
-
-## What I struggled with
-- Web scraping DuckDuckGo was a nightmare! The API constantly rate-limited me or returned empty results, so I had to build a fallback protocol.
-- Sarcasm. The TF-IDF model has absolutely no idea what sarcasm is and will flag true satirical articles as "FAKE". 
-
-## What I learned while building this
-I learned that traditional Machine Learning (like Logistic Regression) is great for recognizing patterns in text structure, but it doesn't actually "know" anything to be true or false. To build a true fact-checker, you have to connect an AI to the live internet so it can read recent news context.
-
-## Limitations
-- **Model is basic:** It's just a simple TF-IDF regression model, not a deep neural network yet.
-- **Depends on dataset quality:** If the training data is biased, the model's predictions will be biased.
-- **Not for critical use:** This is an experimental project and is *not reliable for real-world critical decisions!*
-
-## What I would improve
-- I'd love to swap out the TF-IDF model for a modern transformer model like BERT.
-- Improve the dataset by mixing in more recent news articles.
+> **Disclaimer:** This project is experimental. Results are not guaranteed and should not be used for critical decisions.
 
 ---
+
+## Demo (UI Screens)
+
+### 1) Live Fact Check — Debunked example
+
+When a claim is not supported by sources, the app returns **DEBUNKED (FALSE)** and shows the reasoning + the sources it checked.
+
+![Live fact check – debunked](assets/demo-live-debunked.png)
+
+### 2) Live Fact Check — Verified example
+
+When a claim is supported by sources, the app returns **VERIFIED (TRUE)** and shows the reasoning + sources.
+
+![Live fact check – verified](assets/demo-live-verified.png)
+
+### 3) Live Fact Check — Another debunked example
+
+A second example of a claim that the app could not verify.
+
+![Live fact check – debunked (example 2)](assets/demo-live-debunked-2.png)
+
+### 4) Analyze Content (ML Patterns)
+
+Paste a news article (or a snippet) and the model predicts **FAKE / REAL-like** with a confidence score.
+
+![Analyze content – fake prediction](assets/demo-analyze-content.png)
+
+---
+
+## How it works (high-level)
+
+### A) Analyze Content (ML Patterns)
+
+1. Input text is cleaned and vectorized using **TF‑IDF**.
+2. A **Logistic Regression** model predicts the label.
+3. The UI shows the prediction and confidence.
+
+### B) Live Fact Check (Web)
+
+1. You enter a short factual claim.
+2. The app searches the web for recent context.
+3. An LLM (Google Gemini) summarizes the evidence and returns **VERIFIED / DEBUNKED**.
+4. Sources used for the decision are displayed in the UI.
+
+---
+
+## Getting started (run locally)
+
+### 1) Clone
+
+```bash
+git clone https://github.com/durgaaprasadch/fake-news-detector.git
+cd fake-news-detector
+```
+
+### 2) Create a virtual environment (recommended)
+
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+```
+
+### 3) Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4) Run the app
+
+```bash
+streamlit run app.py
+```
+
+Then open the URL Streamlit prints (usually http://localhost:8501).
+
+---
+
+## Project structure
+
+- `app.py` — Streamlit UI + app logic
+- `model/` — saved ML artifacts
+- `data/` — dataset / training data
+- `utils/` — helper utilities
+
+---
+
+## Limitations
+
+- **ML model is basic:** TF‑IDF + Logistic Regression is a strong baseline, but it’s not a deep semantic fact checker.
+- **Depends on data & sources:** ML predictions depend on training data; live checks depend on search results.
+- **Sarcasm/satire:** Satirical or sarcastic text may be misclassified.
+
+---
+
+## Roadmap / Improvements
+
+- Add a transformer model (e.g., BERT) for deeper language understanding.
+- Improve dataset coverage with more recent articles.
+- Better claim decomposition + source ranking for fact checking.
+
+---
+
 *Built by Durga Prasad | v1 – experimental*
