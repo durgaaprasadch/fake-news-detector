@@ -15,25 +15,28 @@ A Streamlit-based **dual-engine** app that helps you evaluate misinformation in 
 
 When a claim is not supported by sources, the app returns **DEBUNKED (FALSE)** and shows the reasoning + the sources it checked.
 
-![Live fact check – debunked](assets/demo-live-debunked.png)
+<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/d41c8273-b6c9-4bb5-864f-666eec8e20f6" />
+
 
 ### 2) Live Fact Check — Verified example
 
 When a claim is supported by sources, the app returns **VERIFIED (TRUE)** and shows the reasoning + sources.
 
-![Live fact check – verified](assets/demo-live-verified.png)
+<img width="1919" height="1021" alt="Screenshot 2026-03-22 173653" src="https://github.com/user-attachments/assets/9f77e4dc-f192-45b9-b04f-23272221c2cf" />
+
 
 ### 3) Live Fact Check — Another debunked example
 
 A second example of a claim that the app could not verify.
+<img width="1919" height="1015" alt="Screenshot 2026-03-22 180147" src="https://github.com/user-attachments/assets/d5f49b41-54ba-4c59-9d2e-3cecc3473670" />
 
-![Live fact check – debunked (example 2)](assets/demo-live-debunked-2.png)
 
 ### 4) Analyze Content (ML Patterns)
 
 Paste a news article (or a snippet) and the model predicts **FAKE / REAL-like** with a confidence score.
+<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/d0a2a1c5-f7d4-4806-b7ce-02dd6790580e" />
 
-![Analyze content – fake prediction](assets/demo-analyze-content.png)
+
 
 ---
 
