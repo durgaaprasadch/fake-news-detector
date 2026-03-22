@@ -1,0 +1,4 @@
+__pycache__/
+*.pkl
+data/*.csv
+.streamlit/secrets.toml
