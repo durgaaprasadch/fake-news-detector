@@ -272,7 +272,7 @@ if app_mode == "🧠 Analyze Article (ML Patterns)":
 
 elif app_mode == "🌐 Fact Check Claim (Live Web)":
     # API key completely hidden from the Web UI
-    api_key = "AIzaSyBRsRB1JbryosqHMGt_5Ew37NRO-xA4xCI"
+    api_key = "API_KEY"
     
     st.title("🌐 Live Fact Check")
     st.markdown("Enter a claim and I’ll try to verify it using recent sources.")
