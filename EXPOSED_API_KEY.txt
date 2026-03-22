@@ -1,0 +1,5 @@
+Repository: durgaaprasadch/fake-news-detector
+File: app.py
+Location: lines 274-276
+Exposed key:
+AIzaSyBRsRB1JbryosqHMGt_5Ew37NRO-xA4xCI
